@@ -164,3 +164,5 @@ exit
 
 ![](./Diagrams/3_Call_Responses.png)
 > This section of the dashboard will delve into Customer Expereince Center Daily Operation. Specifically, the primary focus will revolve around the various aspects of team performance, including response time, which plays a crucial role in maintaining effective and efficient Customer Expereince Center.
+
+<iframe title="Digital_Extension_and_Farming_Practices" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiM2YyYTNhNjYtMzA1OC00YmZiLWJlNDAtOTE2NWM5NGIwZDI3IiwidCI6IjU3ZjM5OThiLTM5ZTUtNDI0ZC1iNzBkLWQwZDBkMjA2MGMzOCIsImMiOjEwfQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
