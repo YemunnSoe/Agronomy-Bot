@@ -1,29 +1,29 @@
 # Background
 
-AGRICULTURAL CALL CENTER is a platform that operate with many different technologically driven systems — for instance, the knowledge bank, email, SMS, and other digitally operated infrastructure. Then there are databases and Customer Relationship Management (CRM) software. These systems can vary widely, from simple Excel spreadsheets with farmers’ names, numbers, and questions, to tailored software systems created by information technology specialists. Across agriculture centers globally, call center operators have a background and some experience in agriculture. Although almost all agricultural call centers rely on in-house “knowledge banks”. A knowledge bank is the central information database used by the call center. In our case, we choose to create our own knowledge bank — a robust data ecosystem to track and analyze key performance metrics. This enables us better decision-making and support the existing service channels. This (knowledge bank) plays a vital role in providing customer support and sale support through various channels, such as hotline, direct communication, and social media. This team also plays a crucial role in many organizations digital transformation strategy aimed at providing extensive support to a wide variety of users. As the organization scales up its digital operations, there is a need to establish a robust data ecosystem to track and analyze key performance metrics, which will enable better decision-making and support the existing service channels.I discuss my experience in implementing a knowledge system for Agricultural Call Center. [(Read More About THISD:D)](https://bit.ly/3nkxqOC)
+The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2021 forced a suspension of in-person agricultural advisory services and drove up the cost of commercial fertilizers and pesticides. I saw this as an opportunity to shift from in-person to digital farm practices, leveraging the growth of social media. I pitched the idea to senior management. When it was accepted, I immersed myself with the Digital Marketing, Contact Center, Product & Service Design, Agronomy, and Digital Initiative to integrate ideas and domain knowledge from these diverse teams to design and provide timely and cost-effective farming advice directly to farmers’ smartphones. We pivoted to digital campaigns on Facebook and Facebook Messenger to promote lower cost, accessible, and sustainable homemade organic inputs. To date, Tthis collaborative effort resulted in enhancing the accessibility of sustainable farming practices, weather and market information for 2 million farmers.[(Read More About THIS)](https://bit.ly/3LUldK4)
 
 
-![](./Diagrams/Define_System_Requirements.png)
+![](./Diagrams/1_System_Architecture.png)
 
-> The project aims to create a comprehensive data ecosystem for the CEC team, which includes developing ETL workflows, a data repository, a dashboard, and SOPs for maintaining the workflow and dashboard. As part of the project, an audit of the existing data structure will be conducted, and a new template will be recommended to integrate data from multiple sources.
+> The project aims to create a comprehensive data ecosystem for this solution AgronomyBot, which includes developing ETL workflows, a data repository, a dashboard, and SOPs for maintaining the workflow and dashboard. As part of the project, an audit of the existing data structure will be conducted, and a new template will be recommended to integrate data from multiple sources. The ideal outcome of this project is to meets Organization Objective on Develop strong data-driven business decision making culture and systems that can contribite to Organization Mission and Strategies.  
 
 
 # Project Deliverables
 - Project charter [(See More)](https://bit.ly/43OcuA1)
-- ETL workflow [(See More)](https://bit.ly/43Wj9s0)
+- ETL workflow 
 - Data defination [(See More)](https://bit.ly/3n9NKSo)
 - Wireframe
-- Dashboard [(See More)](https://bit.ly/41tLZ1e)
-- SOP [(See More)](https://bit.ly/3NxrWLf)
+- Dashboard [(See More)](https://bit.ly/3nZEyjK)
+- SOP 
 - User training
-- Meeting notes [(See More)](https://bit.ly/3VmnccX)
+- Meeting notes 
 
-### Requirement Collection Approach
+### Analytical Approach
 
-![](./Diagrams/Requirement_Collection_Approach.png)
+![](./Diagrams/Prescriptive_Analytics.png)
 
 
-# ETL Workflow Diagrams [(KNIME)](https://www.knime.com/getting-started-guide)
+# Target Setting
 
 ![](./Diagrams/Combine_Siloed_Data_with_OLAP.png)
 > Combine Siloed Data with Production Data: At the start of this Customer Experience Center, the team used Google Sheets to capture information since the operation was in its early stages. Later on, with support from a centralized Business Intelligence and Data Analytics team, they designed and developed a comprehensive data ecosystem and reporting system. However, Google Sheets continued to be used initially to manage information before Digital Initiative team implement a digital twin of their operation
@@ -44,7 +44,7 @@ Summarizing data by time intervals (daily basics)
 Aggregating data by categories (less granularity in dimension data)
 Filtering data to exclude irrelevant records (omit sensitive information)
 
-[](./Diagrams/Data_Modeling.png)
+[](./Diagrams/1_Data_Model.png)
 
 ### DAX used in this SAMPLE Dashboard [(See More)](https://bit.ly/3n9NKSo)
 
@@ -74,44 +74,6 @@ VAR SocialMedia = [# of Inquiry (Social Media)]
 
 RETURN 
 CALCULATE(Hotline + SocialMedia)
-```
-
-### SQL Query
-
-```
-SELECT 
-  a.InquiryID,
-  a.CallID,
-  b.CallSerialNo,
-  b.UserName,
-  b.PhoneNumber,
-  b.Gender,
-  b.VillageTract,
-  b.Township,
-  b.State,
-  d.InquiryTopic,
-  e.InquiryType,
-  c.Crop,
-  b.CallType,
-  b.AgentID,
-  f.ReferralType,
-  g.BranchName,
-  a.FirstHandlerStatus,
-  a.SecondHandlerStatus,
-  a.SecondHandDateTime,
-  a.CustomerOptions,
-  a.ProductandService,
-  a.ReasonForNoAction,
-  b.Remark
-FROM 
-  CEC_inquiries a 
-  RIGHT JOIN CEC_calls b ON b.ID = a.CallID 
-  LEFT JOIN CEC_cropmaster c ON c.CropID = a.CropID 
-  LEFT JOIN CEC_inquirytopic d ON d.InquiryTopicID = a.InquiryTopicID 
-  LEFT JOIN CEC_inquirytype e ON e.InquiryTypeID = a.InquiryTypeID 
-  LEFT JOIN CEC_referraltype f ON f.ReferrelTypeID = a.ReferralTypeID 
-  LEFT JOIN branches g ON g.BranchID = a.ReferredBranchID
-
 ```
 
 ### Batch Script
@@ -156,13 +118,11 @@ pause
 exit
 ```
 # Dashboard [(See More)](https://bit.ly/41tLZ1e)
-![](./Diagrams/1_Overview.png)
+![](./Diagrams/1_Dashboard.png)
 > This overview tab provides a bird's eye view of the Customer Expereince Center's ability to respond to and serve customers effectively, highlighting the Center's success in managing diverse customer interactions across multiple channels.
 
-![](./Diagrams/2_Inquiry_Mix.png)
+![](./Diagrams/2_Dashboard.png)
 > This tab provides a comprehensive and thorough analysis of the various types of inquiries that the Customer Expereince Center has addressed over the course of the fiscal year. This section presents a detailed and insightful examination of the different types of inquiries that the Customer Expereince Center has encountered, offering an in-depth look into the Center's performance and effectiveness in addressing these inquiries.
 
-![](./Diagrams/3_Call_Responses.png)
+![](./Diagrams/3_Dashboard.png)
 > This section of the dashboard will delve into Customer Expereince Center Daily Operation. Specifically, the primary focus will revolve around the various aspects of team performance, including response time, which plays a crucial role in maintaining effective and efficient Customer Expereince Center.
-
-<iframe title="Digital_Extension_and_Farming_Practices" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiM2YyYTNhNjYtMzA1OC00YmZiLWJlNDAtOTE2NWM5NGIwZDI3IiwidCI6IjU3ZjM5OThiLTM5ZTUtNDI0ZC1iNzBkLWQwZDBkMjA2MGMzOCIsImMiOjEwfQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
