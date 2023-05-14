@@ -29,6 +29,7 @@ The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2
 # Target Setting
 
 ![](./Diagrams/4_Improved_Adopter_driven_ data_model_.png)
+
 > "Setting campaign targets can be a complex task, considering various factors such as crops, seasonality, region, precipitation, and soil health. However, we strive to overcome these challenges by leveraging our analysis of historical data to establish reference rates. This enables us to identify and celebrate specific farming practices at the optimal timing, ultimately delivering smartphones to farmers in a smart and efficient manner."
 
 # Data modelling
@@ -39,7 +40,8 @@ Aggregating data by categories (less granularity in dimension data)
 Filtering data to exclude irrelevant records (omit sensitive information)
 Simulating data based to display similar trends and patterns (not actual figures)
 
-[](./Diagrams/1_Data_Model.png)
+
+![](./Diagrams/1_Data_Model.png)
 
 ### DAX used in this SAMPLE Dashboard [(See More)](https://bit.ly/3n9NKSo)
 
