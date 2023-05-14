@@ -7,6 +7,8 @@ The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2
 
 > The project aims to create a comprehensive data ecosystem for this solution AgronomyBot, which includes developing ETL workflows, a data repository, a dashboard, and SOPs for maintaining the workflow and dashboard. As part of the project, an audit of the existing data structure will be conducted, and a new template will be recommended to integrate data from multiple sources. The ideal outcome of this project is to meets Organization Objective on Develop strong data-driven business decision making culture and systems that can contribite to Organization Mission and Strategies.  
 
+![](./Diagrams/2_System_Architecture.png)
+
 
 # Project Deliverables
 - Project charter [(See More)](https://bit.ly/43OcuA1)
