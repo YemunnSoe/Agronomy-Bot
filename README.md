@@ -1,6 +1,7 @@
 # Background
 
-The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2021 forced a suspension of in-person agricultural advisory services and drove up the cost of commercial fertilizers and pesticides. I saw this as an opportunity to shift from in-person to digital farm practices, leveraging the growth of social media. I pitched the idea to senior management. When it was accepted, I immersed myself with the Digital Marketing, Contact Center, Product & Service Design, Agronomy, and Digital Initiative to integrate ideas and domain knowledge from these diverse teams to design and provide timely and cost-effective farming advice directly to farmers’ smartphones. We pivoted to digital campaigns on Facebook and Facebook Messenger to promote lower cost, accessible, and sustainable homemade organic inputs. To date, Tthis collaborative effort resulted in enhancing the accessibility of sustainable farming practices, weather and market information for 2 million farmers.[(Read More About THIS)](https://bit.ly/3LUldK4)
+The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2021 forced a suspension of in-person agricultural advisory services and drove up the cost of commercial fertilizers and pesticides. I saw this as an opportunity to shift from in-person to digital farm practices, leveraging the growth of social media. I pitched the idea to senior management. When it was accepted, I immersed myself with the Digital Marketing, Contact Center, Product & Service Design, Agronomy, and Digital Initiative to integrate ideas and domain knowledge from these diverse teams to design and provide timely and cost-effective farming advice directly to farmers’ smartphones. We pivoted to digital campaigns on Facebook and Facebook Messenger to promote lower cost, accessible, and sustainable homemade organic inputs. To date, Tthis collaborative effort resulted in enhancing the accessibility of sustainable farming practices, weather and market information for 2 million farmers. This project also granted me opportunities to utilize my expertise to harness data and analytics with new farming technologies as proactive measures to stem the tide of farming disasters. Watching the impacts of farmers having access to this information, improving their crop quality and yields, motivates my teammates and me. Most importantly, it demonstrates how collective actions are helping to build a more vital agriculture industry - one farmer at a time.
+[(Read More About THIS)](https://bit.ly/3LUldK4)
 
 
 ![](./Diagrams/1_System_Architecture.png)
@@ -27,17 +28,8 @@ The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2
 
 # Target Setting
 
-![](./Diagrams/Combine_Siloed_Data_with_OLAP.png)
-> Combine Siloed Data with Production Data: At the start of this Customer Experience Center, the team used Google Sheets to capture information since the operation was in its early stages. Later on, with support from a centralized Business Intelligence and Data Analytics team, they designed and developed a comprehensive data ecosystem and reporting system. However, Google Sheets continued to be used initially to manage information before Digital Initiative team implement a digital twin of their operation
-
-![](./Diagrams/ELT_process_from_Infobip_to_KNIME.png)
-> Infobip to KNIME: Infobip is a leading provider of omnichannel communication, contact center, chatbot, customer engagement, and customer data platforms. Leveraging this cutting-edge technology, we share farming practice content with farmers via Viber on their smartphones. To ensure data safety and security, we transfer the data using SFTP, as recommended by Infobip. Then, we fetch this data and use it in our ETL pipeline for reporting purposes
-
-![](./Diagrams/Messenger_LiveChat_Google_Sheet_Integration.png)
-> Messenger LiveChat & Google Sheet Integration: ManyChat is a vital component of our digital agronomy solution as it enables us to disseminate farming advice to farmers and receive their direct inquiries via messenger. The platform's built-in integration facilitates the capture of chat flow and live chat data, which is then transmitted directly to Google Sheets. The Digital Marketing team established this integration during the early stages of development, while the Data team is responsible for managing and architecting this data to derive valuable insights from it. Although we plan to upgrade to a more advanced data storage solution, such as a Snowflake Cloud Data Warehouse, the current ETL pipeline represents our current workflow.
-
-![](./Diagrams/Viber_Community_JSON_Parsing_Workflow.png)
-> JSON from Viber Community: We have launched a digital farming practices community in Myanmar by utilizing the widespread coverage of Viber users. Through these communities, we educate farmers on the best practices to manage their farms, land, crops, pests & diseases, and yield. Viber serves as our platform to achieve these goals and connect with farmers.  The platform allows us to export JSON files, which contain daily-level-aggregated data that highlights the status of the community. The digital marketing team is responsible for launching new farming practices, educating, engaging, and maintaining these communities. They regularly download these JSON files and reached out our team (Data Analytics team) for leveraging the power of data and analytics to gain insights into community performance.
+![](./Diagrams/4_Improved_Adopter_driven_ data_model_.png)
+> "Setting campaign targets can be a complex task, considering various factors such as crops, seasonality, region, precipitation, and soil health. However, we strive to overcome these challenges by leveraging our analysis of historical data to establish reference rates. This enables us to identify and celebrate specific farming practices at the optimal timing, ultimately delivering smartphones to farmers in a smart and efficient manner."
 
 # Data modelling
 I use pre-aggregated data for this portfolio project. It helps me reduce the amount of data and sensitive information that needs to be processed for analyses or reporting. It involves summarizing or grouping data at a higher level of granularity, such as by week or month, instead of processing every individual record. I use THREE pre-aggregation methods:
@@ -45,37 +37,185 @@ I use pre-aggregated data for this portfolio project. It helps me reduce the amo
 Summarizing data by time intervals (daily basics)
 Aggregating data by categories (less granularity in dimension data)
 Filtering data to exclude irrelevant records (omit sensitive information)
+Simulating data based to display similar trends and patterns (not actual figures)
 
 [](./Diagrams/1_Data_Model.png)
 
 ### DAX used in this SAMPLE Dashboard [(See More)](https://bit.ly/3n9NKSo)
 
 ```
-# of Inquiry (Hotline) =
-CALCULATE (
-    SUM ( 'Inquiry Data [Hotline]'[# of Inquiry] )
+Adopters (for Operation) = 
+SUMX (
+    Results,
+    IF (
+        Results[Week]
+            < DATE ( 2020, 7, 1 ),
+        -- Case 1: For FY20 results, use the reported adoption numbers (that are in the results table).
+        Results[Adopters],
+        IF (
+            NOT (
+                ISBLANK (
+                    LOOKUPVALUE (
+                        'Adoption evaluations'[Adoption rate],
+                        'Adoption evaluations'[Evaluation], Results[Evaluation],
+                        BLANK ()
+                    )
+                )
+            ),
+            -- Case 2: use the actual evaluation results for the adoption rate. Multiply with actual completers.
+            Results[Completers]
+                * LOOKUPVALUE (
+                    'Adoption evaluations'[Adoption rate],
+                    'Adoption evaluations'[Evaluation], Results[Evaluation],
+                    BLANK ()
+                ),
+            -- Case 3: There is no adoption rate yet. Report blank results:
+            BLANK ()
+        )
+    )
 )
-```
-```
-# of Inquiry LY (Hotline) = 
-CALCULATE(
-    [# of Inquiry (Hotline)],
-    SAMEPERIODLASTYEAR ( 'Master Data [Business Calendar]'[Date]))
-```
-```
-# of Inquiry Solved (Hotline) =
-CALCULATE (
-    SUM ( 'Inquiry Data [Social Media]'[# of Inquiry] ),
-    'Inquiry Data [Social Media]'[Status] = "Solved"
-)
-```
-```
-# of Inquiry (All Channels) = 
-VAR Hotline = [# of Inquiry (Hotline)]
-VAR SocialMedia = [# of Inquiry (Social Media)]
 
-RETURN 
-CALCULATE(Hotline + SocialMedia)
+```
+```
+Adopters (for Reporting) = 
+VAR _dates =
+    VALUES ( 'Calendar'[date] )
+RETURN
+    SUMX (
+        CALCULATETABLE (
+            Results,
+            REMOVEFILTERS ( 'Calendar' )
+        ),
+        IF (
+            Results[Source table] = "FY20 results",
+            -- Case 1: FY20 results, just report them at the date of the results entry
+            IF (
+                Results[Week]
+                    IN _dates,
+                Results[Adopters],
+                BLANK ()
+            ),
+            -- Case 2: FY21+ results, we need to filter to the adoption month dates
+            IF (
+                -- Step 2.A: Filter to the adoption month:
+                LOOKUPVALUE (
+                    'Adoption evaluations'[Adoption month],
+                    'Adoption evaluations'[Evaluation], Results[Evaluation],
+                    BLANK ()
+                )
+                    IN _dates,
+                -- Step 2.B: lookup the adoption rate and multiply with completers
+                Results[Completers]
+                    * LOOKUPVALUE (
+                        'Adoption evaluations'[Adoption rate],
+                        'Adoption evaluations'[Evaluation], Results[Evaluation],
+                        BLANK ()
+                    ),
+                -- If the adoption month is blank or does not fall in the _dates period, then don't count adopters:
+                BLANK ()
+            )
+        )
+    )
+
+```
+```
+Adopters forecast = 
+-- Forecasts adoptions based on Evaluation Results IF they exist, and on Target Adoption Rates if not.
+VAR _targetAdoptionRate =
+    CALCULATE (
+        [Adoption rate target],
+        ALL ( 'Target completers' )
+    )
+RETURN
+    -- For adopters before the cut-off date, use the results table:
+    SUMX (
+        Results,
+        IF (
+            Results[Week]
+                < DATE ( 2020, 7, 1 ),
+            -- Case 1: For FY20 results, use the reported adoption numbers (that are in the results table).
+            Results[Adopters],
+            IF (
+                Results[Week]
+                    < DATE ( 2020, 11, 1 ),
+                IF (
+                    NOT (
+                        ISBLANK (
+                            LOOKUPVALUE (
+                                'Adoption evaluations'[Adoption rate],
+                                'Adoption evaluations'[Evaluation], Results[Evaluation],
+                                BLANK ()
+                            )
+                        )
+                    ),
+                    -- Case 2: use the actual evaluation results for the adoption rate. Multiply with actual completers.
+                    Results[Completers]
+                        * LOOKUPVALUE (
+                            'Adoption evaluations'[Adoption rate],
+                            'Adoption evaluations'[Evaluation], Results[Evaluation],
+                            BLANK ()
+                        ),
+                    -- Case 3: use an estimate for the adoption rate (the target). Multiply with actual completers.
+                    Results[Completers] * _targetAdoptionRate
+                ),
+                BLANK ()
+            )
+        )
+    )
+        + -- For adopters after the cut-off date, use the copmletions table:
+        SUMX (
+            VALUES ( 'Technique Dates'[Evaluation] ),
+            CALCULATE (
+                DISTINCTCOUNT ( Completions[User ID] ),
+                Completions[Completion date as date]
+                    >= DATE ( 2020, 11, 1 )
+            )
+                * IF (
+                    NOT (
+                        ISBLANK (
+                            LOOKUPVALUE (
+                                'Adoption evaluations'[Adoption rate],
+                                'Adoption evaluations'[Evaluation], 'Technique Dates'[Evaluation],
+                                BLANK ()
+                            )
+                        )
+                    ),
+                    LOOKUPVALUE (
+                        'Adoption evaluations'[Adoption rate],
+                        'Adoption evaluations'[Evaluation], 'Technique Dates'[Evaluation],
+                        BLANK ()
+                    ),
+                    _targetAdoptionRate
+                )
+        )
+
+```
+```
+Completers (for Operation) = 
+
+-- Part 1: FY20 Reported Completers
+CALCULATE(
+    sum(Results[Completers]),
+    filter( Results, Results[Source table] = "FY20 results" )
+) +
+
+-- Part 2: FY21 Reported Completers
+CALCULATE(
+    sum(Results[Completers]),
+    filter( 
+        Results, 
+        -- Need to apply date filter here instead of source table filter. 
+        -- This is due to completers in the FY21 source table that are listed 
+        -- with a FY20 completion date but are counted towards FY21 adopters results.
+        Results[Week] <  DATE(2020, 11, 1) && Results[Week] >= DATE(2020, 7, 1)
+    )
+) +
+
+-- Part 3: Completers from completer timestamps data
+CALCULATE(
+    DISTINCTCOUNT( Completions[User ID] ),
+    filter(Completions, Completions[Completion date] >= DATE(2020, 11, 1))
+)
 ```
 
 ### Batch Script
