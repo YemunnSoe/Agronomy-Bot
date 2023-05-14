@@ -35,10 +35,10 @@ The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2
 # Data modelling
 I use pre-aggregated data for this portfolio project. It helps me reduce the amount of data and sensitive information that needs to be processed for analyses or reporting. It involves summarizing or grouping data at a higher level of granularity, such as by week or month, instead of processing every individual record. I use THREE pre-aggregation methods:
 
-Summarizing data by time intervals (daily basics)
-Aggregating data by categories (less granularity in dimension data)
-Filtering data to exclude irrelevant records (omit sensitive information)
-Simulating data based to display similar trends and patterns (not actual figures)
+- Summarizing data by time intervals (daily basics)
+- Aggregating data by categories (less granularity in dimension data)
+- Filtering data to exclude irrelevant records (omit sensitive information)
+- Simulating data based to display similar trends and patterns (not actual figures)
 
 
 ![](./Diagrams/1_Data_Model.png)
