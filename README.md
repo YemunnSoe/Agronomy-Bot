@@ -117,12 +117,12 @@ echo ========= Workflow did not complete successfully ===========
 pause
 exit
 ```
-# Dashboard [(See More)](https://bit.ly/41tLZ1e)
+# Dashboard [(See More)](https://bit.ly/3nZEyjK)
 ![](./Diagrams/1_Dashboard.png)
-> This overview tab provides a bird's eye view of the Customer Expereince Center's ability to respond to and serve customers effectively, highlighting the Center's success in managing diverse customer interactions across multiple channels.
+> This comprehensive overview tab offers valuable insights into the seasonal trends of farming practices, empowering users to effortlessly switch between key metrics. This functionality enables the flexibility to adapt and optimize chat flow and digital campaign strategies, ensuring effective customer reach and engagement.
 
 ![](./Diagrams/2_Dashboard.png)
-> This tab provides a comprehensive and thorough analysis of the various types of inquiries that the Customer Expereince Center has addressed over the course of the fiscal year. This section presents a detailed and insightful examination of the different types of inquiries that the Customer Expereince Center has encountered, offering an in-depth look into the Center's performance and effectiveness in addressing these inquiries.
+> Within this tab, you will find a comprehensive and detailed analysis of the geographical coverage achieved by our campaign across the entire country. This section also presents an insightful examination of the various types of crops and farming practices that our customers have actively engaged in. It offers a deep and thorough exploration of the performance and effectiveness of AgronomyBot in addressing the challenges faced by farmers. These proactive measures aim to mitigate the occurrence of farming disasters and promote sustainable agricultural practices.
 
 ![](./Diagrams/3_Dashboard.png)
-> This section of the dashboard will delve into Customer Expereince Center Daily Operation. Specifically, the primary focus will revolve around the various aspects of team performance, including response time, which plays a crucial role in maintaining effective and efficient Customer Expereince Center.
+> This dashboard section delves into the customer journey (or) funnel, with a specific emphasis on key metrics that provide a deeper understanding of the customer journey, operational efficiency, OPEX, and enables the team to make informed decisions during campaign periods. Moreover, leveraging this knowledge allows us to run prescriptive analysis for setting campaign targets in the upcoming fiscal year.
