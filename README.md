@@ -32,6 +32,8 @@ The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2
 
 > "Setting campaign targets can be a complex task, considering various factors such as crops, seasonality, region, precipitation, and soil health. However, we strive to overcome these challenges by leveraging our analysis of historical data to establish reference rates. This enables us to identify and celebrate specific farming practices at the optimal timing, ultimately delivering smartphones to farmers in a smart and efficient manner."
 
+> "The performance of this channel is primarily influenced by targeted region, crop, and farming practices in terms of Ads Spending. To make this assessment, we should consider the expected ad spending for upcomming fiscial based on the current fiscal year's actual rates, as well as an overall average of historical data pertaining to similar campaigns focusing on farming practices. Additionally, we take into consideration the crop calendar, regional weather conditions, and Facebook usage behavior."
+
 # Data modelling
 I use pre-aggregated data for this portfolio project. It helps me reduce the amount of data and sensitive information that needs to be processed for analyses or reporting. It involves summarizing or grouping data at a higher level of granularity, such as by week or month, instead of processing every individual record. I use THREE pre-aggregation methods:
 
