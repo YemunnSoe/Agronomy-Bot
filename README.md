@@ -12,9 +12,9 @@ The twin shocks of the COVID-19 pandemic in 2020 and the Myanmar coup in early 2
 
 
 # Project Deliverables
-- Project charter [(See More)](https://bit.ly/43OcuA1)
+- Project charter 
 - ETL workflow 
-- Data defination [(See More)](https://bit.ly/3n9NKSo)
+- Data defination 
 - Wireframe
 - Dashboard [(See More)](https://bit.ly/3nZEyjK)
 - SOP 
